@@ -1,38 +1,45 @@
-.App {
-  text-align: center;
+html {
+  background-image: url("./kids-health-large.jpg");
+  position: relative;
+  background-repeat: repeat-y;
+  background-size: cover;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  height: 100vh;
+  min-height: 20em;
+  min-width: 20em;
+  letter-spacing: 0.1em;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+
+.btn:hover {
+  cursor: pointer;
+  background-color: darkslategray;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 600px) {
+  html {
+      font-size: 12px;
   }
-  to {
-    transform: rotate(360deg);
+  form {
+      margin: 0;
+      width: 80vw;
+  }
+  form fieldset {
+      margin: 0;
+      width: 100%;
+  }
+  textarea {
+      width: 100%;
+  }
+  div.articles {
+      max-height: 15em;
+  }
+  footer {
+      position: unset;
   }
 }
