@@ -1,14 +1,14 @@
-import "./RegisterForm.css";
+import "./LoginForm.css";
 
 
 
-function RegisterForm() {
+function LoginForm() {
 
     return (
         <div class="container auth">
             <form action="#" method="">
                 <fieldset>
-                    <legend>Register</legend>
+                    <legend>Login</legend>
                     
                     <p class="field email">
                         <input type="email" id="email" name="email" placeholder="Please, enter your e-mail here!" />
@@ -18,15 +18,11 @@ function RegisterForm() {
                         <input type="password" name="password" id="register-pass" />
                         <label for="register-pass">Password:</label>
                     </p>
-                    <p class="field password">
-                        <input type="password" name="rep-pass" id="rep-pass" />
-                        <label for="rep-pass">Repeat password:</label>
-                    </p>
                     <p class="field submit">
                         <button class="btn submit" type="submit">Register</button>
                     </p>
                     <p class="field">
-                        <span>If you already have profile click <a href="#">here</a></span>
+                        <span>If you don't have profile click <a href="#">here</a></span>
                     </p>
                 </fieldset>
             </form>
@@ -37,4 +33,4 @@ function RegisterForm() {
     );
 }
 
-export default RegisterForm;
+export default LoginForm;

@@ -5,6 +5,7 @@ html {
   background-size: cover;
 }
 
+
 body {
   height: 100vh;
   min-height: 20em;
@@ -16,7 +17,7 @@ body {
 
 .btn:hover {
   cursor: pointer;
-  background-color: darkslategray;
+  background-color: rgb(243, 117, 13);
   color: white;
 }
 
