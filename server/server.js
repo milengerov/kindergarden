@@ -1,14 +1,22 @@
 const express = require("express");
 
+const config = require("./config/config");
+console.log(config);
+
+
 const app = express();
-const PORT = 5002;
+require("./config/express")(app)
+require("./config/mongoose")(app);
 
 
 app.get("/", (req, res) => {
-    res.send("server is working");
+    res.json({
+        message: "Working!"
+    });
 });
 
 
-app.listen(PORT, () => {
-    console.log(`Server is listening on port ${PORT}`);
+app.listen(config.PORT, () => {
+    // console.log(process.env.NODE_ENV);
+    console.log(`Server is listening on port ${config.PORT}}`);
 });
