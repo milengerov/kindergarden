@@ -19,7 +19,7 @@ function LoginForm() {
                         <label for="register-pass">Password:</label>
                     </p>
                     <p class="field submit">
-                        <button class="btn submit" type="submit">Register</button>
+                        <button class="btn submit" type="submit">Login</button>
                     </p>
                     <p class="field">
                         <span>If you don't have profile click <a href="#">here</a></span>
