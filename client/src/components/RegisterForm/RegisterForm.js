@@ -9,7 +9,11 @@ function RegisterForm() {
             <form action="#" method="">
                 <fieldset>
                     <legend>Register</legend>
-                    
+
+                    <p class="field email">
+                        <input type="username" id="username" name="username" placeholder="Please, enter your username here!" />
+                        <label for="username">Username:</label>
+                    </p>
                     <p class="field email">
                         <input type="email" id="email" name="email" placeholder="Please, enter your e-mail here!" />
                         <label for="email">Email:</label>
@@ -19,8 +23,8 @@ function RegisterForm() {
                         <label for="register-pass">Password:</label>
                     </p>
                     <p class="field password">
-                        <input type="password" name="rep-pass" id="rep-pass" />
-                        <label for="rep-pass">Repeat password:</label>
+                        <input type="password" name="repeatpassword" id="repeatpassword" />
+                        <label for="repeatpassword">Repeat password:</label>
                     </p>
                     <p class="field submit">
                         <button class="btn submit" type="submit">Register</button>
