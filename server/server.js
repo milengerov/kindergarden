@@ -10,7 +10,7 @@ require("./config/mongoose")(app);
 
 
 
-app.use(routes);
+app.use("/api", routes);
 
 // app.get("/", (req, res) => {
 //     res.json({

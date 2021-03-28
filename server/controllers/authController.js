@@ -13,17 +13,17 @@ router.get("/", (req, res) => {
 });
 
 router.post("/register", async(req, res) => {
-    // const usermock = {
+   { // const usermock = {
     //     username: "Panayot",
     //     email: "panayot@abv.bg",
     //     password: "123456",
 
     // };
     // let user = new User(usermock);
+   }
 
 
-
-    const {username, email, password, repeatpassword} = req.body;
+    const {username, email, password} = req.body;
 
     let salt = await bcrypt.genSalt(SALT_ROUNDS);
     let hash = await bcrypt.hash(password, salt);

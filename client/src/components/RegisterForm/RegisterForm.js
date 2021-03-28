@@ -1,44 +1,68 @@
+import { Component } from "react";
+import { Link } from "react-router-dom";
+
+import * as authServise from "../../services/authService"
+
+
 import "./RegisterForm.css";
 
 
 
-function RegisterForm() {
+function RegisterForm({ history }) {
+
+
+    function onRegisterSubmit(e) {
+        e.preventDefault();
+        console.log(e);
+        const { username, email, password, repeatpassword } = e.target;
+
+
+        authServise.registerUser(username.value, email.value, password.value)
+            .then(res => {
+                console.log(res);
+                history.push("/auth/login")
+            });
+
+    }
+
 
     return (
-        <div class="container auth">
-            <form action="#" method="">
+        <div className="container auth">
+            <form onSubmit={this.onRegisterSubmit}>
                 <fieldset>
                     <legend>Register</legend>
 
-                    <p class="field email">
+                    <p className="field email">
                         <input type="username" id="username" name="username" placeholder="Please, enter your username here!" />
-                        <label for="username">Username:</label>
+                        <label htmlFor="username">Username:</label>
                     </p>
-                    <p class="field email">
+                    <p className="field email">
                         <input type="email" id="email" name="email" placeholder="Please, enter your e-mail here!" />
-                        <label for="email">Email:</label>
+                        <label htmlFor="email">Email:</label>
                     </p>
-                    <p class="field password">
+                    <p className="field password">
                         <input type="password" name="password" id="register-pass" />
-                        <label for="register-pass">Password:</label>
+                        <label htmlFor="register-pass">Password:</label>
                     </p>
-                    <p class="field password">
+                    <p className="field password">
                         <input type="password" name="repeatpassword" id="repeatpassword" />
-                        <label for="repeatpassword">Repeat password:</label>
+                        <label htmlFor="repeatpassword">Repeat password:</label>
                     </p>
-                    <p class="field submit">
-                        <button class="btn submit" type="submit">Register</button>
+                    <p className="field submit">
+                        <button className="btn submit" type="submit">Register</button>
                     </p>
-                    <p class="field">
-                        <span>If you already have profile click <a href="#">here</a></span>
+                    <p className="field">
+                        <span>If you already have profile click <Link to="/auth/login">here</Link></span>
                     </p>
                 </fieldset>
             </form>
         </div>
 
-
-
     );
+
+
+
+
 }
 
 export default RegisterForm;

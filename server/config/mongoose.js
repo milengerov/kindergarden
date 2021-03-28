@@ -5,8 +5,12 @@ const { DB_CONNECTION } = require("./config")
 
 
 function setupMongoose(app) {
-    
-    mongoose.connect(DB_CONNECTION, {useNewUrlParser: true, useUnifiedTopology: true});
+
+    mongoose.connect(DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true });
+
+    mongoose.set('useNewUrlParser', true);
+    mongoose.set('useFindAndModify', false);
+    mongoose.set('useCreateIndex', true);
 
     const db = mongoose.connection;
 
