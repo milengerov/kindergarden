@@ -1,4 +1,4 @@
-import { Component } from "react";
+
 import { Link } from "react-router-dom";
 
 import * as authServise from "../../services/authService"
@@ -13,13 +13,13 @@ function RegisterForm({ history }) {
 
     function onRegisterSubmit(e) {
         e.preventDefault();
-        console.log(e);
-        const { username, email, password, repeatpassword } = e.target;
+        
+        const { email, password, repeatpassword } = e.target;
 
 
-        authServise.registerUser(username.value, email.value, password.value)
-            .then(res => {
-                console.log(res);
+        authServise.registerUser(email.value, password.value)
+            .then(result => {
+                console.log(result);             
                 history.push("/auth/login")
             });
 
@@ -28,14 +28,10 @@ function RegisterForm({ history }) {
 
     return (
         <div className="container auth">
-            <form onSubmit={this.onRegisterSubmit}>
+            <form onSubmit={onRegisterSubmit}>
                 <fieldset>
                     <legend>Register</legend>
 
-                    <p className="field email">
-                        <input type="username" id="username" name="username" placeholder="Please, enter your username here!" />
-                        <label htmlFor="username">Username:</label>
-                    </p>
                     <p className="field email">
                         <input type="email" id="email" name="email" placeholder="Please, enter your e-mail here!" />
                         <label htmlFor="email">Email:</label>

@@ -7,7 +7,7 @@ function Footer() {
     return (
         <footer className="footer">
             <h3>
-                kindergardens.com ©
+                kindergartens.com ©
             </h3>
         </footer>
     );

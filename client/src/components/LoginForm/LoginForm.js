@@ -1,15 +1,35 @@
+import { Link } from "react-router-dom"
+
+
 import "./LoginForm.css";
 
+import * as authService from "../../services/authService"
 
 
-function LoginForm() {
+
+function LoginForm({
+    history
+}) {
+
+
+    function onLoginSubmit(e) {
+        e.preventDefault();
+        const { email, password } = e.target;
+
+        authService.loginUser(email.value, password.value)
+            .then(res => {
+                console.log(res);
+                history.push("/")
+
+            })
+    }
 
     return (
         <div className="container auth">
-            <form action="#" method="">
+            <form onSubmit={onLoginSubmit}>
                 <fieldset>
                     <legend>Login</legend>
-                    
+
                     <p className="field email">
                         <input type="email" id="email" name="email" placeholder="Please, enter your e-mail here!" />
                         <label htmlFor="email">Email:</label>
@@ -22,7 +42,7 @@ function LoginForm() {
                         <button className="btn submit" type="submit">Login</button>
                     </p>
                     <p className="field">
-                        <span>If you don't have profile click <a href="#">here</a></span>
+                        <span>If you don't have profile click <Link to="/auth/register">here</Link></span>
                     </p>
                 </fieldset>
             </form>
