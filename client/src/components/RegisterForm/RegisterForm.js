@@ -14,7 +14,7 @@ function RegisterForm({ history }) {
     function onRegisterSubmit(e) {
         e.preventDefault();
         
-        const { email, password, repeatpassword } = e.target;
+        const { username, email, password, repeatpassword } = e.target;
 
 
         authServise.registerUser(email.value, password.value)

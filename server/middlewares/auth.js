@@ -1,38 +1,25 @@
-const { SECRET } = require("../config/config");
 const jwt = require("jsonwebtoken");
-const { COOKIE_NAME } = require("../config/config");
 
-
-
-
-
-//check if there a cookie
-//validate the token
+const { SECRET } = require("../config/config")
 
 function auth(req, res, next) {
+    let authorizationHeader = req.get("Autorization");
 
-    let token = req.cookies[COOKIE_NAME];
+    if (authorizationHeader) {
+        let token = authorizationHeader.split(" ")[1];  //"Bearer 20iejas;lkdfj03wjfldj.sldfkjsldkfjlsdfsdf.sdfsdgdgf"
 
-    if (token) {
-        jwt.verify(token, SECRET, function (err, decoded) {
-            if (err) {
-                res.clearCookie(COOKIE_NAME);
-            }
-            else {
-                req.user = decoded;
-                res.locals.user = decoded;
-                res
-                    .status(200)
-                    .cookie(COOKIE_NAME, token)
-                    .json({user: decoded})
+        try {
+            let decoded = jwt.verify(token, SECRET);
+            req.user = decoded;
+        } catch (error) {
+            return next();
+        }
 
 
-            }
-        });
+
     }
 
     next();
-
 }
 
 module.exports = auth;

@@ -17,11 +17,18 @@ function LoginForm({
         const { email, password } = e.target;
 
         authService.loginUser(email.value, password.value)
-            .then(res => {
+            .then(res => res.json())
+            .then( res => {
                 console.log(res);
+                localStorage.setItem("userInfo", JSON.stringify(res));
+                localStorage.setItem("auth-token", res.token);
+                localStorage.setItem("email", res.email);
+                localStorage.setItem("_id", res._id);
                 history.push("/")
-
             })
+               
+
+            
     }
 
     return (

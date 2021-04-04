@@ -10,8 +10,13 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String
-    }
-
+    },
+    wishes: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: "Wish"
+        }
+    ]
 });
 
 

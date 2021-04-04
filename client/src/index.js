@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { CookiesProvider } from "react-cookie";
 
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <CookiesProvider>
+        <App />
+      </CookiesProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
