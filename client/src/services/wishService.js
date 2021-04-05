@@ -7,7 +7,10 @@ export function create(wishData) {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(wishData)
+        body: JSON.stringify(wishData),
+        mode: "cors",
+        credentials: "include",
+        withCredentials: true
     });    
 
 }

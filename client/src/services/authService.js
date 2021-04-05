@@ -25,7 +25,7 @@ export function loginUser(email, password) {
         body: JSON.stringify({ email, password }),
         mode: "cors",
         credentials: "include",
-        withCredentials: true
+        // withCredentials: true
     });
 }
 
@@ -37,6 +37,6 @@ export function logoutUser() {
         },        
         mode: "cors",
         credentials: "include",
-        withCredentials: true
+        // withCredentials: true
     });
 }

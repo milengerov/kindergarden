@@ -2,15 +2,24 @@ const mongoose = require("mongoose");
 
 const wishSchema = new mongoose.Schema({
 
-    email: {
+    currentKindergarten: {
         require: true,
-        unique: true,
         type: String
 
     },
-    password: {
+    desiredKindergarten: {
+        require: true,
         type: String
     },
+    born: {
+        require: true,
+        type: String
+    },
+    firstName: {
+        require: true,
+        type: String
+    },
+
     creator: {
         type: mongoose.Types.ObjectId,
         ref: 'User'

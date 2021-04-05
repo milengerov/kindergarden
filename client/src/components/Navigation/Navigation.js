@@ -21,12 +21,10 @@ function Navigation() {
                 localStorage.clear();
                 removeCookie("AUTH_SESSION");
                 history.push("/")
-
-            })
-
-
+            });
     }
 
+    
     return (
         <header className="header">
             <h1>

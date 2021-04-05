@@ -79,7 +79,7 @@ router.post("/login", async (req, res, next) => {
 
         res
             .status(200)
-            .cookie(COOKIE_NAME, token, {httpOnly: true, secure: true})
+            .cookie(COOKIE_NAME, token, {httpOnly: true }) //secure: true
             .json({
                 message: "Logged in successfully!",
                 _id: user._id,

@@ -1,4 +1,5 @@
 import { Route } from "react-router-dom";
+import { useState , useEffect} from "react";
 
 
 import Navigation from "./components/Navigation/Navigation";
@@ -11,23 +12,38 @@ import About from "./components/About/About";
 
 import './App.css';
 
-function App() {
-  return (
-    <div>
-      <Navigation />
+function App() {     
 
-      <Route path="/" exact component={About}></Route>
-      <Route path="/auth/register" component={RegisterForm}></Route>
-      <Route path="/auth/login" component={LoginForm}></Route>
-      <Route path="/wish/create" component={Wish}></Route>
+    // const [user, setUser] = useState(null);
 
-      <Footer />
+    // useEffect(() => {
+    //     const userEmail = localStorage.getItem("email");
+    //     setUser(userEmail)
+    // }, [])
+
+    // const authInfo = {
+    //     isAuthenticated: Boolean(user),
+    //     user
+    // };
+
+    // console.log(authInfo);
+
+    return (
+        <div>
+            <Navigation />
+
+            <Route path="/" exact component={About}></Route>
+            <Route path="/auth/register" component={RegisterForm}></Route>
+            <Route path="/auth/login" component={LoginForm}></Route>
+            <Route path="/wish/create" component={Wish}></Route>
+
+            <Footer />
 
 
 
 
-    </div>
-  );
+        </div>
+    );
 }
 
 export default App;

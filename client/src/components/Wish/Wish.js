@@ -52,6 +52,7 @@ function Wish() {
     useEffect(() => {
         console.log("useEffect");
         if (!currentRegion.value) { return }
+
         fetch(`http://localhost:5002/api/kindergartens/${currentRegion.value}`, {
             method: "GET",
             headers: {
@@ -59,7 +60,7 @@ function Wish() {
             },
             mode: "cors",
             credentials: "include",
-            withCredentials: true
+            // withCredentials: true
         })
             .then(res => res.json())
             .then(kindergartens => setCurrentKindergartens(kindergartens))
@@ -68,6 +69,8 @@ function Wish() {
 
     useEffect(() => {
         console.log("useEffect");
+        if (!desiredRegion.value) { return }
+
         fetch(`http://localhost:5002/api/kindergartens/${desiredRegion.value}`, {
             method: "GET",
             headers: {
@@ -75,7 +78,7 @@ function Wish() {
             },
             mode: "cors",
             credentials: "include",
-            withCredentials: true
+            // withCredentials: true
         })
             .then(res => res.json())
             .then(kindergartens => setdesiredKindergartens(kindergartens))
@@ -115,6 +118,10 @@ function Wish() {
         };
 
         wishService.create(wishData)
+            .then(res => res.json())
+            .then(createdWish => {
+                console.log(createdWish);
+            })
 
     }
 

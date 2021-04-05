@@ -1,22 +1,21 @@
 const jwt = require("jsonwebtoken");
 
-const { SECRET } = require("../config/config")
+const { SECRET, COOKIE_NAME } = require("../config/config")
 
 function auth(req, res, next) {
-    let authorizationHeader = req.get("Autorization");
+    // let authorizationHeader = req.get("Autorization");
+    const token = req.cookies[COOKIE_NAME]
 
-    if (authorizationHeader) {
-        let token = authorizationHeader.split(" ")[1];  //"Bearer 20iejas;lkdfj03wjfldj.sldfkjsldkfjlsdfsdf.sdfsdgdgf"
-
+    if (token) {
+        // let token = authorizationHeader.split(" ")[1];  //"Bearer 20iejas;lkdfj03wjfldj.sldfkjsldkfjlsdfsdf.sdfsdgdgf"
+        
         try {
-            let decoded = jwt.verify(token, SECRET);
-            req.user = decoded;
+            let decodedUser = jwt.verify(token, SECRET);
+            req.user = decodedUser;
+            console.log("decodedUser: ",decodedUser);
         } catch (error) {
             return next();
         }
-
-
-
     }
 
     next();

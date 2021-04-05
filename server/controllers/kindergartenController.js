@@ -4,7 +4,7 @@ const Kindergarten = require("../models/Kindergarten");
 
 router.get("/:currentRegion", (req, res) => {
     const region = req.params.currentRegion
-    console.log(region);
+    // console.log(region);
     const filter ={"Район": region};
     
     Kindergarten.find(filter)
