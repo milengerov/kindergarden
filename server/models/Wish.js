@@ -20,6 +20,10 @@ const wishSchema = new mongoose.Schema({
         type: String
     },
 
+    date: {
+        type: Date
+    },
+
     creator: {
         type: mongoose.Types.ObjectId,
         ref: 'User'

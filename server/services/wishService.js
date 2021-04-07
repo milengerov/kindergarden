@@ -6,10 +6,16 @@ function create(wishData, user) {
     return wish.save();
 }
 
+function getAll() {
+    return Wish.find();
+        
+}
+
 
 
 
 
 module.exports = {
     create,
+    getAll
 }

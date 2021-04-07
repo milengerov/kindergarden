@@ -10,6 +10,14 @@ router.get("/", (req, res) => {
     //TODO...
 });
 
+router.get("/getAll", (req, res) => {
+    wishService.getAll()
+        .then(wishes => {
+            res.status(200).json(wishes)
+        })
+        .catch()
+});
+
 
 router.post("/create", (req, res, next) => {
     // console.log(req.cookies[COOKIE_NAME]);
@@ -17,9 +25,9 @@ router.post("/create", (req, res, next) => {
 
     const user = req.user;
     const desireData = req.body;
-    console.log("desireData +>>>",desireData);
+    console.log("desireData +>>>", desireData);
 
-    wishService.create(desireData, user)
+    wishService.create({...desireData, date: new Date()}, user)
         .then(createdWish => {
             console.log(createdWish);
             res.status(201).json(createdWish)

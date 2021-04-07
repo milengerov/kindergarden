@@ -10,9 +10,21 @@ export function create(wishData) {
         body: JSON.stringify(wishData),
         mode: "cors",
         credentials: "include",
-        withCredentials: true
+        // withCredentials: true
     });    
 
+}
+
+
+export function getAll() {
+    return fetch(API_URL + "getAll", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        mode: "cors",
+        credentials: "include"        
+    });
 }
 
 
