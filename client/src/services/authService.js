@@ -40,3 +40,26 @@ export function logoutUser() {
         // withCredentials: true
     });
 }
+export function getUser(userId) {
+    return fetch(API_URL + `users/${userId}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },        
+        mode: "cors",
+        credentials: "include",
+        // withCredentials: true
+    });
+}
+
+export function authUser(userId) {
+    return fetch(API_URL + `/authUser`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },        
+        mode: "cors",
+        credentials: "include",
+        // withCredentials: true
+    });
+}

@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom"
-
+import { Link } from "react-router-dom";
 
 import "./LoginForm.css";
+
+import {useContext} from "react";
+import { UserContext } from "../../userContext";
 
 import * as authService from "../../services/authService"
 
@@ -11,6 +13,7 @@ function LoginForm({
     history
 }) {
 
+    const [user, setUser] = useContext(UserContext);
 
     function onLoginSubmit(e) {
         e.preventDefault();
@@ -24,6 +27,7 @@ function LoginForm({
                 localStorage.setItem("auth-token", res.token);
                 localStorage.setItem("email", res.email);
                 localStorage.setItem("_id", res._id);
+                setUser({user: res.email, _id: res._id})
                 history.push("/")
             })
                

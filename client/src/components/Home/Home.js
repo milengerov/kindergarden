@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import "./Home.css";
-import WishArticle from "./WishArticle";
+import WishArticle from "../Wish/WishArticle";
 import * as wishService from "../../services/wishService"
 
 
@@ -20,10 +20,10 @@ function Home() {
             .then(returnedWishes => setWishes(returnedWishes))
     }, []);
 
-    let result = <p>Няма заявени желания</p>
+    let result = <p>Няма заявени желания</p>;
 
     if(wishes.length > 0) {
-        result = wishes?.map(x => <WishArticle key={x._id} wish={x}></WishArticle>)
+        result = wishes.map(x => <WishArticle key={x._id} wish={x}></WishArticle>);
     }
 
 

@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5002/api/desire/"
+const API_URL = "http://localhost:5002/api/desires/"
 
 
 export function create(wishData) {
@@ -10,14 +10,25 @@ export function create(wishData) {
         body: JSON.stringify(wishData),
         mode: "cors",
         credentials: "include",
-        // withCredentials: true
+        // withCredentials: true --> with axios
     });    
 
 }
 
 
 export function getAll() {
-    return fetch(API_URL + "getAll", {
+    return fetch(API_URL, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        mode: "cors",
+        credentials: "include"        
+    });
+}
+
+export function getOne(id) {
+    return fetch(API_URL + `/${id}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -28,12 +39,3 @@ export function getAll() {
 }
 
 
-// export function loginUser(email, password) {
-//     return fetch(API_URL + "login", {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json"
-//         },
-//         body: JSON.stringify({ email, password })
-//     });
-// }

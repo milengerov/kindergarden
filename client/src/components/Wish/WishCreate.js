@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Route } from "react-router";
 
-import "./Wish.css"
+import "./WishCreate.css"
 
 import * as wishService from "../../services/wishService"
 
@@ -35,7 +35,7 @@ const regions = [
 ];
 
 
-function Wish() {
+function WishCreate() {
 
     const [currentRegion, setCurrentRegion] = useState({});
     const [currentKindergartens, setCurrentKindergartens] = useState([]);
@@ -192,5 +192,5 @@ function Wish() {
 
 }
 
-export default Wish;
+export default WishCreate;
 

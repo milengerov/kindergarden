@@ -12,10 +12,14 @@ const verifyRegister = require("../middlewares/verifyRegister");
 
 
 
-router.get("/", (req, res) => {
-    res.json({
-        message: "Auth Working!"
-    });
+router.get("/users/:id", (req, res, next) => {
+    const id = req.params.id;
+    authService.getOne(id)
+        .then(user => {
+            res.status(200).json(user)
+        })
+        .catch(next)
+
 });
 
 router.post("/register", verifyRegister, (req, res, next) => {
@@ -30,31 +34,6 @@ router.post("/register", verifyRegister, (req, res, next) => {
 
 });
 
-// router.post("/register", verifyRegister, async (req, res, next) => {
-
-//     console.log(req.body);
-//     const { email, password } = req.body;
-
-//     let salt = await bcrypt.genSalt(SALT_ROUNDS);
-//     let hash = await bcrypt.hash(password, salt);
-
-//     let user = new User({
-//         password: hash,
-//         email,
-//     });
-
-//     console.log(user);
-
-//     user.save()
-//         .then(createdUser => {
-//             console.log(createdUser);
-//             res.status(201).json(createdUser)
-//         })
-//         .catch(err => {
-//             next(err);
-//         });
-
-// });
 
 router.post("/login", async (req, res, next) => {
 
@@ -79,7 +58,7 @@ router.post("/login", async (req, res, next) => {
 
         res
             .status(200)
-            .cookie(COOKIE_NAME, token, {httpOnly: true }) //secure: true
+            .cookie(COOKIE_NAME, token, { httpOnly: true }) //secure: true
             .json({
                 message: "Logged in successfully!",
                 _id: user._id,
@@ -87,7 +66,7 @@ router.post("/login", async (req, res, next) => {
                 email: user.email
             });
 
-        
+
 
     }
     catch (error) {
@@ -98,31 +77,23 @@ router.post("/login", async (req, res, next) => {
 
 
 
-    // User.findOne({ email })
-    //     .then(user => {
-    //         console.log("user:.....");
-    //         console.log(user);
-
-    //         let token = jwt.sign({
-    //             user: user.email,
-    //             _id: user._id
-    //         }, SECRET);
-
-    //         res.status(200).json({
-    //             _id: user._id, 
-    //             token,
-    //             user: user.email
-    //         })
-
-    //     })
-    //     .catch(next);
 
 })
 
 
 router.get('/logout', (req, res) => {
-    res.cookie(COOKIE_NAME, "", {httpOnly: true, secure: true});
+    
+    // res.cookie(COOKIE_NAME, "", { httpOnly: true, secure: true });
+    res.clearCookie(COOKIE_NAME, { httpOnly: true, secure: true });
     res.status(200).json({ message: 'Successfully logged out' })
 });
+
+
+router.get("/authUser", (req, res) => {
+    if(req.user) {
+        return res.status(200).json(req.user)
+    }
+    return res.status(401).json({message: "Not logged in!"})
+})
 
 module.exports = router;

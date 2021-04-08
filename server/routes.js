@@ -8,7 +8,7 @@ const kindergartenController = require("./controllers/kindergartenController");
 
 router.use("/", homeController);
 router.use("/auth", authController);
-router.use("/desire", wishController);
+router.use("/desires", wishController);
 router.use("/kindergartens", kindergartenController)
 
 

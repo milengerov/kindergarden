@@ -1,13 +1,18 @@
 const Wish = require("../models/Wish")
 
 function create(wishData, user) {
-    // console.log(wishData);
-    const wish = new Wish(wishData, user._id);
+
+    const wish = new Wish({...wishData, creator: user._id});
     return wish.save();
 }
 
 function getAll() {
     return Wish.find();
+        
+}
+
+function getOne(id) {
+    return Wish.findById(id);
         
 }
 
@@ -17,5 +22,6 @@ function getAll() {
 
 module.exports = {
     create,
-    getAll
+    getAll,
+    getOne
 }

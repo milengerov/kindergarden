@@ -26,7 +26,13 @@ async function registerUser(userData) {
 
 }
 
+async function getOne(id) {
+    const user = await User.findById(id);
+    return user;
+}
+
 
 module.exports = {
     registerUser,
+    getOne
 }
