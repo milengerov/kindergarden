@@ -34,7 +34,6 @@ function Home() {
 
                 <div class="articles">
                     {result}
-
                 </div>
             </section>
 
