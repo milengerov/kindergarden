@@ -8,7 +8,8 @@ const auth = require("../middlewares/auth");
 
 function setupExpress(app) {
     app.use(cookieParser());
-    app.use(cors({credentials: true, origin: "http://localhost:3000"}));
+    // app.use(cors({credentials: true, origin: "http://localhost:3000"}));
+    app.use(cors({credentials: true, origin: true}));
     app.use(express.json());
     app.use(auth);
     app.use("/api", routes);

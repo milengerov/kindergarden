@@ -29,10 +29,10 @@ function Home() {
 
 
     return (
-        <div class="content">
-            <section class="wishes">
+        <div className="content">
+            <section className="wishes">
 
-                <div class="articles">
+                <div className="articles">
                     {result}
                 </div>
             </section>

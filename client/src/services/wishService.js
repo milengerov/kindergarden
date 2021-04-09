@@ -37,5 +37,15 @@ export function getOne(id) {
         credentials: "include"        
     });
 }
+export function deleteOne(id) {
+    return fetch(API_URL + `/${id}/delete`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        mode: "cors",
+        credentials: "include"        
+    });
+}
 
 

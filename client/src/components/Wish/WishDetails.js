@@ -11,10 +11,12 @@ import * as authService from "../../services/authService";
 
 
 function WishDetails({
-    match
+    match,
+    history
 }) {
 
     const wishId = match.params.wishId;
+    // console.log(wishId);
 
     const [currentWish, setCurrentWish] = useState({});
     const [style, setStyle] = useState({ display: "none" });
@@ -41,19 +43,19 @@ function WishDetails({
             })
     }, []);
 
-    // useEffect(() => {
-    //     console.log(currentWish);
-    //     authService.getUser(currentWish._id)
-    //     .then(res => res.json())
-    //     .then(user => {
-    //         console.log(user);
-    //         setCreator(user)
-    //     })
-    // }, [currentWish])
-
 
     function onClickHandler(e) {
         style.display == "block" ? setStyle({ display: "none" }) : setStyle({ display: "block" });
+    }
+
+    function onDeleteHandler(e) {
+        wishService.deleteOne(wishId)
+            .then(res => res.json())
+            .then(result => {
+                console.log(result);
+                history.push("/");
+            })
+            .catch(err => console.log(err.message));
     }
 
 
@@ -65,8 +67,8 @@ function WishDetails({
                 <div className="buttons">
                     {isOwnWish
                         ? <div>
-                            <Link to="#" className="btn delete">Delete</Link>
-                            <Link to="#" className="btn edit">Edit</Link>
+                            <Link to="#" className="btn delete" onClick={onDeleteHandler}>Delete</Link>
+                            <Link to={`/wish/details/${wishId}/edit`} className="btn edit">Edit</Link>
                         </div>
                         : <Link to="#" className="btn edit" onClick={onClickHandler}>Contact</Link>
                     }

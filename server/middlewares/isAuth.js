@@ -3,8 +3,11 @@ function isAuth(req, res, next) {
     if (!req.user) {
         res.status(401).json({message: "Not authorized!"})
     }
+    else {
+
+        next();
+    }
     
-    next();
 }
 
-module.exports = isAuth
+module.exports = isAuth;

@@ -35,7 +35,9 @@ const regions = [
 ];
 
 
-function WishCreate() {
+function WishCreate({
+    history
+}) {
 
     const [currentRegion, setCurrentRegion] = useState({});
     const [currentKindergartens, setCurrentKindergartens] = useState([]);
@@ -121,6 +123,8 @@ function WishCreate() {
             .then(res => res.json())
             .then(createdWish => {
                 console.log(createdWish);
+                history.push("/")
+                
             })
 
     }

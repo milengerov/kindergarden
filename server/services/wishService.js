@@ -16,6 +16,10 @@ function getOne(id) {
         
 }
 
+function deleteOne(id) {
+    return Wish.findByIdAndDelete(id);
+}
+
 
 
 
@@ -23,5 +27,6 @@ function getOne(id) {
 module.exports = {
     create,
     getAll,
-    getOne
+    getOne,
+    deleteOne
 }

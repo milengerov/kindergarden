@@ -12,7 +12,7 @@ function WishArticle({
     let [year, month, date]  = wish.date.split("T")[0].split("-");
     let createDate = `${date}.${month}.${year}`;
 
-    const detailsLink = <Link to={`/wish/details/${wish._id}`} class="btn details-btn">Details</Link>;
+    const detailsLink = <Link to={`/wish/details/${wish._id}`} className="btn details-btn">Details</Link>;
 
     return (
         <article>

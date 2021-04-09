@@ -6,6 +6,7 @@ const wishController = require("./controllers/wishController");
 const kindergartenController = require("./controllers/kindergartenController");
 
 
+
 router.use("/", homeController);
 router.use("/auth", authController);
 router.use("/desires", wishController);
