@@ -4,20 +4,33 @@ const { COOKIE_NAME } = require("../config/config")
 const wishService = require("../services/wishService")
 const isAuth = require("../middlewares/isAuth")
 
-// router.get("/", (req, res) => {
-//     res.json({
-//         message: "des9ire Working!"
-//     });
-//     //TODO...
-// });
+
 
 router.get("/", (req, res, next) => {
+    
     wishService.getAll()
         .then(wishes => {
             res.status(200).json(wishes)
         })
         .catch(next)
 });
+
+router.get("/search/:kindergarten/:born", (req, res, next) => {
+    console.log("Searching");
+    const options = {
+        desiredKindergarten: req.params.kindergarten,
+        born: req.params.born
+    }
+    
+    wishService.getAll(options)
+        .then(wishes => {
+            res.status(200).json(wishes)
+        })
+        .catch(next)
+});
+
+
+
 
 router.get("/:id", (req, res, next) => {
     const id = req.params.id
@@ -28,6 +41,11 @@ router.get("/:id", (req, res, next) => {
         })
         .catch(next)
 });
+
+
+
+
+
 
 router.post("/:id/delete", isAuth, (req, res, next) => {
     const id = req.params.id

@@ -45,7 +45,7 @@ function Navigation() {
                 {user.hasOwnProperty("user")
                     ? (
                         <div>
-                            <Link to="/search">Search</Link>
+                            {/* <Link to="/search">Search</Link> */}
                             <Link to="/wish/create">Create a wish</Link>
                             <Link to="/auth/logout" onClick={logoutUserHandler}>Logout</Link>
                         </div>

@@ -28,8 +28,9 @@ export function getAll() {
     return fetch(API_URL, {
         method: "GET",
         headers: {
-            "Content-Type": "application/json"
-        },
+            "Content-Type": "application/json",
+            
+        },        
         mode: "cors",
         credentials: "include"        
     });
@@ -45,6 +46,20 @@ export function getOne(id) {
         credentials: "include"        
     });
 }
+
+export function getMany(kindergarten, born) {
+    return fetch(API_URL + `/search/${kindergarten}/${born}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        mode: "cors",
+        credentials: "include"        
+    });
+}
+
+
+
 export function deleteOne(id) {
     return fetch(API_URL + `/${id}/delete`, {
         method: "POST",

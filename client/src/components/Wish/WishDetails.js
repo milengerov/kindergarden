@@ -63,7 +63,7 @@ function WishDetails({
         <div className="container details">
             <div className="details-content">
 
-                <p>Желая да преместя {currentWish.firstName}, роден {currentWish.born} от {currentWish.currentKindergarten} в {currentWish.desiredKindergarten}</p>
+                <p>Желая да преместя {currentWish.firstName}, година на раждане - {currentWish.born} от район {currentWish.currentRegion}, {currentWish.currentKindergarten} в район {currentWish.desiredRegion}, {currentWish.desiredKindergarten}.</p>
                 <div className="buttons">
                     {isOwnWish
                         ? <div>

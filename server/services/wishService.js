@@ -6,8 +6,8 @@ function create(wishData, user) {
     return wish.save();
 }
 
-function getAll() {
-    return Wish.find();
+function getAll(options) {
+    return Wish.find(options);
         
 }
 

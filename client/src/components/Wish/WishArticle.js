@@ -16,7 +16,7 @@ function WishArticle({
 
     return (
         <article>
-            <p>Желая да преместя {wish.firstName}, роден {wish.born} от {wish.currentKindergarten} в {wish.desiredKindergarten}</p>
+            <p>Желая да преместя {wish.firstName}, година на раждане {wish.born} от {wish.currentKindergarten} в {wish.desiredKindergarten}</p>
             <h3>{createDate}</h3>
             {user.hasOwnProperty("user") &&
             (detailsLink)
