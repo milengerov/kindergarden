@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
-import { Route } from "react-router";
+import {useContext} from "react";
+import { WishesContext } from "../../wishesContext";
+// import { Route } from "react-router";
 
 import "./WishCreate.css"
 
 import * as wishService from "../../services/wishService"
+
 
 
 
@@ -36,17 +39,57 @@ const regions = [
 
 
 function WishCreate({
+    match,
     history
 }) {
 
-    const [currentRegion, setCurrentRegion] = useState({});
+    const [wishes, setWishes] = useContext(WishesContext);
+    
+    const wishId = match.params.wishId;
+ 
+    
+
+    
+
+    let values = {
+        currentRegion: {value: ""},
+        currentKindergarten: "",
+        desiredRegion: {value: ""},
+        desiredKindergarten: "",
+        born: "",
+        firstName: ""
+    }
+
+    
+
+    if(wishId && wishes) {
+        const currentWish = wishes.find(wish => wish._id == wishId);
+        
+        values = {
+            currentRegion: {value: currentWish?.currentRegion},
+            currentKindergarten: currentWish?.currentKindergarten,
+            desiredRegion: {value: currentWish?.desiredRegion},
+            desiredKindergarten: currentWish?.desiredKindergarten,
+            born: currentWish?.born,
+            firstName: currentWish?.firstName
+        }
+        console.log(values);
+    }
+
+    
+
+    const [currentRegion, setCurrentRegion] = useState({value: values.currentRegion.value});
     const [currentKindergartens, setCurrentKindergartens] = useState([]);
-    const [currentKindergarten, setCurrentkindergarten] = useState("");
+    const [currentKindergarten, setCurrentkindergarten] = useState(values.currentKindergarten);
 
 
-    const [desiredRegion, setDesiredRegion] = useState({});
+    const [desiredRegion, setDesiredRegion] = useState({value: values.desiredRegion.value});
     const [desiredKindergartens, setdesiredKindergartens] = useState([]);
-    const [desiredKindergarten, setdesiredKindergarten] = useState("");
+    const [desiredKindergarten, setdesiredKindergarten] = useState(values.desiredKindergarten);
+
+    const [born, setBorn] = useState(values.born)
+    const [firstName, setFirstName] = useState(values.firstName)
+    
 
 
 
@@ -106,25 +149,36 @@ function WishCreate({
         setdesiredKindergarten(e.target.value);
     }
 
+    function onChangeBorn(e) {
+        setBorn(e.target.value);
+    }
+
+    function onNameChanged(e) {
+        
+        setFirstName(e.target.value);
+    }
+
 
 
     function onSubmitHandler(e) {
         e.preventDefault();
-        const born = e.target.born.value;
-        const firstName = e.target.firstName.value;
+        // const born = e.target.born.value;
+        // const firstName = e.target.firstName.value;
         const wishData = {
+            currentRegion: currentRegion.value,
+            desiredRegion: desiredRegion.value,
             currentKindergarten,
             desiredKindergarten,
             born,
             firstName
         };
+        console.log(wishData);
 
-        wishService.create(wishData)
+        wishService.create(wishData, wishId)
             .then(res => res.json())
             .then(createdWish => {
                 console.log(createdWish);
-                history.push("/")
-                
+                history.push("/");                
             })
 
     }
@@ -170,7 +224,7 @@ function WishCreate({
 
                     <div>
                         <label htmlFor="born">Born</label><br />
-                        <select name="born">
+                        <select name="born" value={born} onChange={onChangeBorn}>
                             <option value="">--Please choose an option--</option>
                             <option value="2015">2015</option>
                             <option value="2016">2016</option>
@@ -182,11 +236,12 @@ function WishCreate({
                         </select>
                     </div>
                     <p className="field category">
-                        <input type="text" id="firstName" name="firstName" placeholder="Enter the first name of the child" />
-                        <label htmlFor="category">First name</label>
+    
+                        <input type="text" id="firstName" name="firstName" placeholder="Enter the first name of the child" onChange={onNameChanged} value={firstName}/>
+                        <label htmlFor="category">Child's First Name</label>
                     </p>
                     <p className="field submit">
-                        <button className="btn submit" type="submit">Create</button>
+                        <button className="btn submit" type="submit">Send</button>
                     </p>
 
                 </fieldset>

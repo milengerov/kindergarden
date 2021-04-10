@@ -20,6 +20,9 @@ function deleteOne(id) {
     return Wish.findByIdAndDelete(id);
 }
 
+function editOne(id, desireData) {
+    return Wish.findByIdAndUpdate(id, desireData);
+}
 
 
 
@@ -28,5 +31,6 @@ module.exports = {
     create,
     getAll,
     getOne,
-    deleteOne
+    deleteOne,
+    editOne
 }

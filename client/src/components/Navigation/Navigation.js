@@ -38,13 +38,14 @@ function Navigation() {
 
             <h1>
                 <Link className="home" to="/">Home</Link>
-                <Link to="/search"><img className="search-symbol " src="logo-finder-symbol.png" alt="" srcSet="" width="40" /></Link>
+                
 
             </h1>
             <nav className="nav-buttons">
                 {user.hasOwnProperty("user")
                     ? (
                         <div>
+                            <Link to="/search">Search</Link>
                             <Link to="/wish/create">Create a wish</Link>
                             <Link to="/auth/logout" onClick={logoutUserHandler}>Logout</Link>
                         </div>

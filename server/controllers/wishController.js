@@ -50,20 +50,41 @@ router.post("/:id/delete", isAuth, (req, res, next) => {
         .catch(next)
 });
 
+router.post("/:id/edit", isAuth, (req, res, next) => {
+    console.log("Patch");
+    const user = req.user;
+    const desireData = req.body;
+
+    const id = req.params.id
+    const userId = req.user._id
+
+    wishService.getOne(id)
+        .then(wish => {
+            if (wish.creator != userId) {
+                res.status(401).json({ message: "401 Unauthorized!" });
+                return
+            }
+
+            wishService.editOne(id, desireData)
+                .then(editedWish => {
+                    console.log(editedWish);
+                    res.status(200).json({ message: "Post edited successfully!" })
+                })
+                .catch(next)
+
+        })
+        .catch(next)
+});
 
 
 
 
 
-
-
-router.post("/create", isAuth, (req, res, next) => {
-    // console.log(req.cookies[COOKIE_NAME]);
-    // console.log(req.user);
-
+router.post("/", isAuth, (req, res, next) => {
 
     const user = req.user;
     const desireData = req.body;
+
     console.log("desireData +>>>", desireData);
     console.log("user +>>>", user);
 

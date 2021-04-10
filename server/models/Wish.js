@@ -2,6 +2,16 @@ const mongoose = require("mongoose");
 
 const wishSchema = new mongoose.Schema({
 
+    currentRegion: {
+        require: true,
+        type: String
+
+    },
+    desiredRegion: {
+        require: true,
+        type: String
+
+    },
     currentKindergarten: {
         require: true,
         type: String

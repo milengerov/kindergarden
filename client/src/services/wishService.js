@@ -1,8 +1,16 @@
-const API_URL = "http://localhost:5002/api/desires/"
+const API_URL = "http://localhost:5002/api/desires"
 
 
-export function create(wishData) {
-    return fetch(API_URL + "create", {
+export function create(wishData, wishId) {
+
+    let fetchUrl = "http://localhost:5002/api/desires"
+    
+    if (wishId) {
+        fetchUrl += `/${wishId}/edit`;
+        
+    }
+
+    return fetch(fetchUrl, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

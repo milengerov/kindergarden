@@ -1,17 +1,22 @@
 import { useState, useEffect } from "react";
 
+import { WishesContext } from "../../wishesContext";
+import { useContext } from "react";
+import { Route } from "react-router";
+
 import "./Home.css";
 import WishArticle from "../Wish/WishArticle";
 import * as wishService from "../../services/wishService"
 
 
 
-
-
-
 function Home() {
+    
 
-    const [wishes, setWishes] = useState([]);
+    const [wishes, setWishes] = useContext(WishesContext);
+    console.log(wishes);
+
+    // const [wishes, setWishes] = useState([]);
 
     useEffect(() => {
 
