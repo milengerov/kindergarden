@@ -37,7 +37,9 @@ const regions = [
 
 
 
-function Home() {
+function Home({
+    
+}) {
 
     const [region, setRegion] = useState({ value: "" });
     const [kindergartens, setKindergartens] = useState([]);
@@ -56,6 +58,7 @@ function Home() {
         wishService.getAll()
             .then(res => res.json())
             .then(returnedWishes => setWishes(returnedWishes.reverse()))
+            .catch(err => console.log(err));
     }, []);
 
 
@@ -68,7 +71,7 @@ function Home() {
 
 
     useEffect(() => {
-        console.log("useEffect");
+        // console.log("useEffect");
         if (!region.value) { return }
 
         fetch(`http://localhost:5002/api/kindergartens/${region.value}`, {
@@ -82,6 +85,7 @@ function Home() {
         })
             .then(res => res.json())
             .then(kindergartens => setKindergartens(kindergartens))
+            .catch(err => console.log(err));
     }, [region]);
 
 
@@ -100,20 +104,14 @@ function Home() {
 
     function onSearchSubmit(e) {
         e.preventDefault();
-        // console.log(region.value, kindergarten, born);
-        // const searchedKindergarten = kindergarten;
-        // const searchedBorn = born;
-
 
         wishService.getMany(kindergarten, born)
             .then(res => res.json())
             .then(returnedWishes => setWishes(returnedWishes))
-
-
-        // let filteredWishes = wishes.filter(w => (w.desiredKindergarten === kindergarten && w.born === born));
-        // console.log(filteredWishes);
-        // setWishes(filteredWishes);
+            .catch(err => console.log(err));
         
+
+
     }
 
 
@@ -142,7 +140,7 @@ function Home() {
                             <option value="">--Please choose an option--</option>
                             {kindergartens.map(x => <option value={x["Име на институцията"]} key={x._id}>{x["Име на институцията"]}</option>)}
                         </select>
-                    </div>           
+                    </div>
 
                     <div>
                         <label htmlFor="born">Born</label><br />
@@ -157,7 +155,7 @@ function Home() {
                             <option value="2021">2021</option>
                         </select>
                     </div>
-                    
+
                     <p className="field submit">
                         <button className="btn submit" type="submit">Search</button>
                     </p>

@@ -29,7 +29,8 @@ function Navigation() {
                 setUser({});
                 localStorage.clear();
                 history.push("/")
-            });
+            })
+            .catch(err => console.log(err));
     }
 
 

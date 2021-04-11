@@ -37,8 +37,8 @@ function App() {
 
         wishService.getAll()
             .then(res => res.json())
-            .then(returnedWishes => setWishes(returnedWishes))
-    }, [setWishes]);
+            .then(returnedWishes => setWishes(returnedWishes.reverse()))
+    }, []);
 
 
 
