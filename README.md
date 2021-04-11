@@ -8,4 +8,4 @@ This study project was inspired by the real need for a “place” on internet w
 
 ## Tech Stack
 
-- MERN (MongoDB, Express.js, React, and Node.js) Solution stack;
+- MERN (MongoDB, Express.js, React, and Node.js).
