@@ -9,3 +9,34 @@ This study project was inspired by the real need for a “place” on internet w
 ## Tech Stack
 
 - MERN (MongoDB, Express.js, React, and Node.js).
+
+# How to run 
+
+- Install [MongoDB](https://www.mongodb.com/try/download)
+- Navigate to server folder
+```bash
+cd server
+```
+- Install all needed packages
+```bash
+npm install
+```
+- Run the server:
+```bash
+npm start
+```
+The server will run on http://localhost:5002/
+
+- Navigate to client folder:
+```bash
+cd client
+```
+- Install all needed packages:
+```bash
+npm install
+```
+- Run the application:
+```bash
+npm start
+```
+The app will run on http://localhost:3000/

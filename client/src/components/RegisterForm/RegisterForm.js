@@ -14,14 +14,18 @@ function RegisterForm({ history }) {
     function onRegisterSubmit(e) {
         e.preventDefault();
         
-        const { username, email, password, repeatpassword } = e.target;
+        const { email, password, repeatpassword } = e.target;
 
+        // if (email && password && repeatpassword && password === repeatpassword) {
+
+        // }
 
         authServise.registerUser(email.value, password.value)
             .then(result => {
                 console.log(result);             
                 history.push("/auth/login")
-            });
+            })
+            .catch(err => console.log(err));
 
     }
 

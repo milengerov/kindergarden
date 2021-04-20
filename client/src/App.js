@@ -31,6 +31,7 @@ function App() {
                 console.log(user);
                 setUser(user)
             })
+            .catch(err => console.log(err));
     }, [setUser])
 
     useEffect(() => {

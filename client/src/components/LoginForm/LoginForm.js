@@ -23,10 +23,12 @@ function LoginForm({
             .then(res => res.json())
             .then( res => {
                 console.log(res);
+
                 localStorage.setItem("userInfo", JSON.stringify(res));
                 localStorage.setItem("auth-token", res.token);
                 localStorage.setItem("email", res.email);
                 localStorage.setItem("_id", res._id);
+                
                 setUser({user: res.email, _id: res._id})
                 history.push("/")
             })
